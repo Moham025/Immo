@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 import 'package:carousel_slider/carousel_slider.dart';
+import '../models/parcelle.dart';
 import '../widgets/parcelle_card.dart';
 import '../widgets/footer.dart';
 import '../theme/app_theme.dart';
