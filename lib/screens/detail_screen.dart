@@ -6,6 +6,7 @@ import '../services/action_service.dart';
 import '../theme/app_theme.dart';
 import '../utils/formatters.dart';
 import '../widgets/fallback_image.dart';
+import '../widgets/footer.dart';
 
 class DetailScreen extends StatefulWidget {
   final String id;
@@ -108,33 +109,40 @@ class _DetailScreenState extends State<DetailScreen> {
 
   Widget _buildWebLayout(Parcelle parcelle) {
     return SingleChildScrollView(
-      padding: const EdgeInsets.all(40),
-      child: Row(
-        crossAxisAlignment: CrossAxisAlignment.start,
+      child: Column(
         children: [
-          // Gallery
-          Expanded(
-            flex: 5,
-            child: Container(
-              height: 500,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(20),
-                boxShadow: [
-                  BoxShadow(color: Colors.black.withOpacity(0.05), blurRadius: 20)
-                ],
-              ),
-              child: ClipRRect(
-                borderRadius: BorderRadius.circular(20),
-                child: _buildGallery(parcelle),
-              ),
+          Padding(
+            padding: const EdgeInsets.all(40),
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                // Gallery
+                Expanded(
+                  flex: 5,
+                  child: Container(
+                    height: 500,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(20),
+                      boxShadow: [
+                        BoxShadow(color: Colors.black.withOpacity(0.05), blurRadius: 20)
+                      ],
+                    ),
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(20),
+                      child: _buildGallery(parcelle),
+                    ),
+                  ),
+                ),
+                const SizedBox(width: 40),
+                // Info & Actions
+                Expanded(
+                  flex: 4,
+                  child: _buildInfoSection(parcelle, showActions: true),
+                ),
+              ],
             ),
           ),
-          const SizedBox(width: 40),
-          // Info & Actions
-          Expanded(
-            flex: 4,
-            child: _buildInfoSection(parcelle, showActions: true),
-          ),
+          const AppFooter(),
         ],
       ),
     );
@@ -154,6 +162,8 @@ class _DetailScreenState extends State<DetailScreen> {
             padding: const EdgeInsets.all(24.0),
             child: _buildInfoSection(parcelle, showActions: false),
           ),
+          const SizedBox(height: 24),
+          const AppFooter(),
         ],
       ),
     );

@@ -162,12 +162,16 @@ class ParcelleCard extends StatelessWidget {
                                   color: AppTheme.textSecondary,
                                 ),
                               ),
-                            Text(
-                              Formatters.formatPrice(parcelle.prix),
-                              style: const TextStyle(
-                                fontSize: 16,
-                                fontWeight: FontWeight.bold,
-                                color: AppTheme.accent,
+                            const SizedBox(width: 8),
+                            Flexible(
+                              child: Text(
+                                Formatters.formatPrice(parcelle.prix),
+                                overflow: TextOverflow.ellipsis,
+                                style: const TextStyle(
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.bold,
+                                  color: AppTheme.accent,
+                                ),
                               ),
                             ),
                           ],

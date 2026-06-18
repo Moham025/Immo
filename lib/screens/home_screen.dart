@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 import 'package:carousel_slider/carousel_slider.dart';
-import '../models/parcelle.dart';
 import '../widgets/parcelle_card.dart';
+import '../widgets/footer.dart';
 import '../theme/app_theme.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -114,7 +114,10 @@ class _HomeScreenState extends State<HomeScreen> {
       );
     }
 
-    final filteredParcelles = _parcelles.where((p) => p.categorie == categorie).toList();
+    final filteredParcelles = _parcelles.where((p) {
+      final cat = p.categorie.trim().toLowerCase();
+      return cat == categorie || cat == '${categorie}s';
+    }).toList();
 
     if (filteredParcelles.isEmpty) {
       return Center(
@@ -215,7 +218,8 @@ class _HomeScreenState extends State<HomeScreen> {
                 },
               ),
             ),
-            const SizedBox(height: 48), // Bottom padding
+            const SizedBox(height: 64),
+            const AppFooter(),
           ],
         ),
       ),
